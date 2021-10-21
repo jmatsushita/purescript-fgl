@@ -44,6 +44,7 @@ type IncidentEdges k b = List (IncidentEdge k b)
 
 newtype IncidentEdge k b = IncidentEdge (IncidentEdgeRec k b)
 derive instance eqIncidentEdge :: (Eq k, Eq b) => Eq (IncidentEdge k b)
+derive instance ordIncidentEdge :: (Ord k, Ord b) => Ord (IncidentEdge k b)
 derive instance newtypeIncidentEdge :: Newtype (IncidentEdge k b) _
 derive newtype instance showIncidentEdge :: (Show k, Show b) => Show (IncidentEdge k b)
 

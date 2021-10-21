@@ -18,20 +18,20 @@ import Data.List (List)
 import Data.List as List
 
 -- | All 'Node's linked to or from in a 'Context'.
-neighbors :: forall k a b. Eq k => Context k a b -> List k
+neighbors :: forall k a b. Ord k => Context k a b -> List k
 neighbors c =
   let ns = successors' c <> predecessors' c
    in List.nub ns
 
 -- | All 'Node's linked to in a 'Context'.
-successors :: forall k a b. Eq k => Context k a b -> List k
+successors :: forall k a b. Ord k => Context k a b -> List k
 successors = List.nub <<< successors'
 
 successors' :: forall k a b. Context k a b -> List k
 successors' = map A.nodeFromIncidentEdge <<< A.outgoersFromContext
 
 -- | All 'Node's linked from in a 'Context'.
-predecessors :: forall k a b. Eq k => Context k a b -> List k
+predecessors :: forall k a b. Ord k => Context k a b -> List k
 predecessors = List.nub <<< predecessors'
 
 predecessors' :: forall k a b. Context k a b -> List k

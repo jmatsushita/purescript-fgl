@@ -52,7 +52,7 @@ reverseEdges = mapContexts (\(Context c) -> Context $ c { incomers = c.outgoers,
 
 -- | Make the graph undirected, i.e. for every edge from A to B, there
 -- exists an edge from B to A.
-mkUndirected :: forall gr k a b. Ord k => Eq b => DynGraph gr => gr k a b -> gr k a b
+mkUndirected :: forall gr k a b. Ord k => Ord b => DynGraph gr => gr k a b -> gr k a b
 mkUndirected = mapContexts f
   where f (Context c) = let ps = List.nub (c.incomers <> c.outgoers)
                             c' = c { incomers = ps, outgoers = ps }
